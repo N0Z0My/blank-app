@@ -99,7 +99,7 @@ if not st.session_state.game_over:
             st.session_state.message = "バースト！あなたの負けです。"
             st.session_state.losses += 1
             st.error(st.session_state.message)
-            time.sleep(10)
+            time.sleep(1)
         st.rerun()
 
     if stand_button:
