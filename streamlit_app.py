@@ -22,7 +22,7 @@ with st.expander("ゲームのルール"):
 def display_cards(cards, title=""):
     card_symbols = {
         1: "A", 2: "2", 3: "3", 4: "4", 5: "5", 
-        6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 10: "J", 10:"Q", 10:"K" 
+        6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 11: "J", 12:"Q", 13:"K" 
     }
 
     if title:
@@ -55,8 +55,8 @@ def display_cards(cards, title=""):
 
 # 初期化
 if "players_hand" not in st.session_state:
-    st.session_state.players_hand = [random.randint(1, 10)]
-    st.session_state.dealer_hand = [random.randint(1, 10)] 
+    st.session_state.players_hand = [random.randint(1, 13)]
+    st.session_state.dealer_hand = [random.randint(1, 13)] 
     st.session_state.game_over = False
     st.session_state.message = ""
 
@@ -87,11 +87,11 @@ if not st.session_state.game_over:
         stand_button = st.button("スタンド", use_container_width=True)
 
     if hit_button:
-        st.session_state.players_hand.append(random.randint(1, 10))
+        st.session_state.players_hand.append(random.randint(1, 13))
 
-        if sum(st.session_state.players_hand) > 21:
-            while sum(st.session_state.dealer_hand) < 17:
-                st.session_state.dealer_hand.append(random.randint(1, 10))
+        if sum([min(v, 10) for v in st.session_state.players_hand]) > 21:
+            while sum([min(v, 10) for v in st.session_state.dealer_hand]) < 17:
+                st.session_state.dealer_hand.append(random.randint(1, 13))
 
             st.session_state.game_over = True
             st.session_state.message = "バースト！あなたの負けです。"
@@ -100,14 +100,14 @@ if not st.session_state.game_over:
         st.rerun()
 
     if stand_button:
-        while sum(st.session_state.dealer_hand) < 17:
-            st.session_state.dealer_hand.append(random.randint(1, 10))
+        while sum([min(v, 10) for v in st.session_state.dealer_hand]) < 17:
+            st.session_state.dealer_hand.append(random.randint(1, 13))
 
         st.session_state.game_over = True
 
-        player_sum = sum(st.session_state.players_hand)
-        dealer_sum = sum(st.session_state.dealer_hand)
-
+        player_sum = sum([min(v, 10) for v in st.session_state.players_hand])
+        dealer_sum = sum([min(v, 10) for v in st.session_state.dealer_hand])
+        
         if dealer_sum > 21:
             st.session_state.message = "ディーラーのバースト！あなたの勝ちです。"
             st.session_state.wins += 1
@@ -131,8 +131,8 @@ if st.session_state.game_over:
     display_cards(st.session_state.dealer_hand, "ディーラーの手札")
 
     if st.button("新しいゲームを開始", use_container_width=True):
-        st.session_state.players_hand = [random.randint(1, 10)]
-        st.session_state.dealer_hand = [random.randint(1, 10)]
+        st.session_state.players_hand = [random.randint(1, 13)]
+        st.session_state.dealer_hand = [random.randint(1, 13)]
         st.session_state.game_over = False
         st.session_state.message = ""
         st.rerun()
