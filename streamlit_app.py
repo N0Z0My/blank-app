@@ -100,8 +100,8 @@ if not st.session_state.game_over:
             st.session_state.losses += 1
             st.error(st.session_state.message)
             display_cards(st.session_state.players_hand, "あなたの手札")
-            time.sleep(1)
-        st.rerun()
+        #     time.sleep(1)
+        # st.rerun()
 
     if stand_button:
         while sum([min(v, 10) for v in st.session_state.dealer_hand]) < 17:
