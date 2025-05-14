@@ -60,9 +60,11 @@ if "players_hand" not in st.session_state:
     st.session_state.players_hand = [random.randint(1, 10)]
     st.session_state.game_over = False
     st.session_state.message = ""
-    st.session_state.wins = 0
-    st.session_state.losses = 0
-    st.session_state.draws = 0
+
+# 勝敗カウント用の変数を初期化
+for state_var in ["wins", "losses", "draws"]:
+    if state_var not in st.session_state:
+        st.session_state[state_var] = 0
 
 # スコアボードの表示
 col1, col2, col3 = st.columns(3)
