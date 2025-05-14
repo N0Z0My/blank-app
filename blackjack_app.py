@@ -1,5 +1,5 @@
 import random
-import blackjack_app as st
+import streamlit as st
 
 # 初期化
 if "players_hand" not in st.session_state:
