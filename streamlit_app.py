@@ -89,7 +89,7 @@ if not st.session_state.game_over:
 
     if hit_button:
         st.session_state.players_hand.append(random.randint(1, 13))
-        st.rerun()
+        #st.rerun()
 
         if sum([min(v, 10) for v in st.session_state.players_hand]) > 21:
             while sum([min(v, 10) for v in st.session_state.dealer_hand]) < 17:
@@ -101,7 +101,7 @@ if not st.session_state.game_over:
             st.error(st.session_state.message)
             # display_cards(st.session_state.players_hand, "あなたの手札")
         #     time.sleep(1)
-        # st.rerun()
+        st.rerun()
 
     if stand_button:
         while sum([min(v, 10) for v in st.session_state.dealer_hand]) < 17:
