@@ -98,6 +98,7 @@ if not st.session_state.game_over:
             st.session_state.message = "バースト！あなたの負けです。"
             st.session_state.losses += 1
             st.error(st.session_state.message)
+        st.rerun()
 
     if stand_button:
         while sum(st.session_state.dealer_hand) < 17:
