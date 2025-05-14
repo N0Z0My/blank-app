@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+import time
 
 # ページ設定
 st.set_page_config(
@@ -98,6 +99,7 @@ if not st.session_state.game_over:
             st.session_state.message = "バースト！あなたの負けです。"
             st.session_state.losses += 1
             st.error(st.session_state.message)
+            time.sleep(10)
         st.rerun()
 
     if stand_button:
