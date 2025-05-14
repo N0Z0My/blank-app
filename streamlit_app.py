@@ -88,7 +88,7 @@ if not st.session_state.game_over:
 
     if hit_button:
         st.session_state.players_hand.append(random.randint(1, 13))
-        st.rerun()
+        #st.rerun()
 
         if sum([min(v, 10) for v in st.session_state.players_hand]) > 21:
             while sum([min(v, 10) for v in st.session_state.dealer_hand]) < 17:
