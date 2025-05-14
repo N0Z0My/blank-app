@@ -90,7 +90,7 @@ if not st.session_state.game_over:
     if hit_button:
         # カードを追加
         st.session_state.players_hand.append(random.randint(1, 10))
-        st.balloons()
+        
         
         # 合計が21を超えたらゲームオーバー
         if sum(st.session_state.players_hand) > 21:
