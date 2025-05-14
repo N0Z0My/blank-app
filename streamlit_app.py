@@ -51,7 +51,7 @@ def display_cards(cards, title=""):
                 """, 
                 unsafe_allow_html=True
             )
-    st.markdown(f"**合計: {sum(cards)}**")
+    st.markdown(f"**合計: {sum([min(v, 10) for v in cards]) }**")
 
 # 初期化
 if "players_hand" not in st.session_state:
@@ -107,7 +107,7 @@ if not st.session_state.game_over:
 
         player_sum = sum([min(v, 10) for v in st.session_state.players_hand])
         dealer_sum = sum([min(v, 10) for v in st.session_state.dealer_hand])
-        
+
         if dealer_sum > 21:
             st.session_state.message = "ディーラーのバースト！あなたの勝ちです。"
             st.session_state.wins += 1
